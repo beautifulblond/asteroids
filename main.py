@@ -1,5 +1,9 @@
 import pygame
 from constants import *
+from player import Player
+
+player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
+
 
 def main():
 	pygame.init()
@@ -11,8 +15,11 @@ def main():
 	while True:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
-		  		return
+				  return
+
+			player.update(dt)
 			screen.fill("black")
+			player.draw(screen)
 			pygame.display.flip()
 		ticktock.tick(60)
 		dt = ticktock.tick(60) / 1000
