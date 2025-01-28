@@ -6,6 +6,11 @@ player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
 
 
 def main():
+	updateable = pygame.sprite.Group()
+	drawable = pygame.sprite.Group()
+	Player.containers = (updateable, drawable)
+	player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
+	
 	pygame.init()
  
 	ticktock = pygame.time.Clock()
@@ -17,10 +22,17 @@ def main():
 			if event.type == pygame.QUIT:
 				  return
 
-			player.update(dt)
+			updateable.update(dt)
+			#player.update(dt)
 			screen.fill("black")
-			player.draw(screen)
-			pygame.display.flip()
+			 
+    
+			for sprite in drawable:
+				sprite.draw(screen)
+			#drawable.draw(screen)
+			#player.draw(screen)
+			
+		pygame.display.flip()
 		ticktock.tick(60)
 		dt = ticktock.tick(60) / 1000
 	
