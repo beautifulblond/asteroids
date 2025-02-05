@@ -1,11 +1,11 @@
 import pygame
 import sys
 from constants import *
-from player import Player
+from player import *
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
-player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
+#player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS, shots_group)
 
 
 def main():
@@ -14,10 +14,11 @@ def main():
 	updateable = pygame.sprite.Group()
 	drawable = pygame.sprite.Group()
 	asteroids = pygame.sprite.Group()
+	shots_group = pygame.sprite.Group()
 	Player.containers = (updateable, drawable)
 	Asteroid.containers = (asteroids, updateable, drawable)
 	AsteroidField.containers = (updateable,)
-	player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS)
+	player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, PLAYER_RADIUS, shots_group)
 
 	
 	AsteroidField()
@@ -38,6 +39,7 @@ def main():
 				  return
 
 		updateable.update(dt)
+		shots_group.update(dt)
   
 		for asteroid in asteroids:
 			if asteroid.collision_check(player) == False:
@@ -48,6 +50,7 @@ def main():
 		screen.fill("black")
 		for sprite in drawable:
 			sprite.draw(screen)
+			shots_group.draw(screen)
 			
 		pygame.display.flip()
 		#ticktock.tick(60)

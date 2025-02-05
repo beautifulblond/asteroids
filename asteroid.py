@@ -1,9 +1,10 @@
 import pygame
+from pygame.math import Vector2
 from circleshape import CircleShape
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
-        super().__init__(x, y, radius)
+        super().__init__(Vector2(x, y), radius)
         self.x = x
         self.y = y
         self.radius = radius
