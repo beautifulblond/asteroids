@@ -30,16 +30,10 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
     while True:
-        #dt = clock.tick(60) / 1000.0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         
-        #player.update(dt)
-        #Player class is now contained by updateable
-        
-        
-        # The following should remain as ordered    
         screen.fill("black")
         
         asteroid_field
@@ -50,9 +44,11 @@ def main():
             if asteroid.collision_check(player):
                 print("Game over!")
                 pygame.quit()
+            for shot in shots:
+                if asteroid.collision_check(shot):
+                    asteroid.kill()
+                    shot.kill()
         
-        #player.draw(screen)
-        #Player class is now contained by drawable
         for sprite in drawable:
             sprite.draw(screen)
         pygame.display.flip()
