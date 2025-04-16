@@ -46,7 +46,8 @@ def main():
                 pygame.quit()
             for shot in shots:
                 if asteroid.collision_check(shot):
-                    asteroid.kill()
+                    #asteroid.kill() # to be replaced with asteroid.split()
+                    asteroid.split()
                     shot.kill()
         
         for sprite in drawable:
