@@ -42,6 +42,11 @@ def main():
         
         updateable.update(dt)
         
+        for asteroid in asteroids:
+            if asteroid.collision_check(player) == True:
+                print("Game over!")
+                pygame.quit()
+        
         #player.draw(screen)
         #Player class is now contained by drawable
         for sprite in drawable:
