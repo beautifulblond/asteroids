@@ -40,10 +40,10 @@ class AsteroidField(pygame.sprite.Sprite):
         if self.spawn_timer > ASTEROID_SPAWN_RATE:
             self.spawn_timer = 0
         
-        edge = random.choice(self.edges)
-        speed = random.randint(40, 100)
-        velocity = edge[0] * speed
-        velocity = velocity.rotate(random.randint(-30, 30))
-        position = edge[1](random.uniform(0, 1))
-        kind = random.randint(1, ASTEROID_KINDS)
-        self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)
+            edge = random.choice(self.edges)
+            speed = random.randint(40, 100)
+            velocity = edge[0] * speed
+            velocity = velocity.rotate(random.randint(-30, 30))
+            position = edge[1](random.uniform(0, 1))
+            kind = random.randint(1, ASTEROID_KINDS)
+            self.spawn(ASTEROID_MIN_RADIUS * kind, position, velocity)

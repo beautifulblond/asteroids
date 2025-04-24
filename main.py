@@ -7,6 +7,10 @@ from shot import Shot
 
 
 def main():
+    # score for the game, probably create a class later
+    score = 0
+    score_increment = 10
+    
     pygame.init()
     
     clock = pygame.time.Clock()
@@ -42,13 +46,15 @@ def main():
         
         for asteroid in asteroids:
             if asteroid.collision_check(player):
-                print("Game over!")
+                print(f"Game over!\nYour final score is: {score}!")
                 pygame.quit()
             for shot in shots:
                 if asteroid.collision_check(shot):
                     #asteroid.kill() # to be replaced with asteroid.split()
                     asteroid.split()
                     shot.kill()
+                    score += score_increment
+                    print(score)
         
         for sprite in drawable:
             sprite.draw(screen)
