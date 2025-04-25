@@ -12,6 +12,8 @@ def main():
     score_increment = 10
     
     pygame.init()
+    pygame.font.init()
+    font = pygame.font.Font(None, 48)
     
     clock = pygame.time.Clock()
     dt = 0
@@ -43,6 +45,9 @@ def main():
         asteroid_field
         
         updateable.update(dt)
+        
+        score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+        screen.blit(score_text, (10, 10))
         
         for asteroid in asteroids:
             if asteroid.collision_check(player):
